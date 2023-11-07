@@ -1,0 +1,22 @@
+dist:
+  name: otelcol
+  description: OpenTelemetry Collector
+  output_path: GO_PKG_BUILD_BIN_DIR
+  version: PKG_VERSION-PKG_RELEASE
+  otelcol_version: PKG_VERSION
+
+receivers:
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver vPKG_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/snmpreceiver vPKG_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver vPKG_VERSION
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter vPKG_VERSION
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter vPKG_VERSION
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter vPKG_VERSION
+extensions:
+  - gomod: go.opentelemetry.io/collector/extension/ballastextension vPKG_VERSION
+  - gomod: go.opentelemetry.io/collector/extension/zpagesextension vPKG_VERSION
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor vPKG_VERSION
+  - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor vPKG_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor vPKG_VERSION

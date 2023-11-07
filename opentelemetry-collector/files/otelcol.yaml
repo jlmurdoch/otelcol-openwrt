@@ -1,0 +1,38 @@
+extensions:
+
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+  hostmetrics:
+    collection_interval: 10
+    scrapers:
+      network:
+
+processors:
+  batch:
+  resourcedetection:
+    detectors: [env, system]
+    timeout: 2s
+    override: false
+
+exporters:
+  otlphttp:
+    compression: none
+
+    ### Basic example for metrics, traces & logs
+    # endpoint: https://example.com:4318
+
+    ### Splunk Observability Cloud example explicitly for metrics
+    # metrics_endpoint: "https://ingest.us1.signalfx.com:443/v2/datapoint/otlp"
+    # headers:
+    #  Content-Type: "application/x-protobuf"
+    #  X-SF-Token:   "a1b2c3d4-e5f6g7h8-i9j0"
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp, hostmetrics]
+      processors: [batch, resourcedetection]
+      exporters: [otlphttp]
