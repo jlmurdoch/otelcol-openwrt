@@ -6,16 +6,12 @@ receivers:
       http:
         endpoint: 0.0.0.0:4318
   hostmetrics:
-    collection_interval: 10
+    collection_interval: 10s
     scrapers:
       network:
 
 processors:
   batch:
-  resourcedetection:
-    detectors: [env, system]
-    timeout: 2s
-    override: false
 
 exporters:
   otlphttp:
@@ -34,5 +30,5 @@ service:
   pipelines:
     metrics:
       receivers: [otlp, hostmetrics]
-      processors: [batch, resourcedetection]
+      processors: [batch]
       exporters: [otlphttp]

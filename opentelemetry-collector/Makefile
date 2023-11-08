@@ -13,6 +13,8 @@ PKG_BUILD_DEPENDS:=opentelemetry-collector/host golang/host
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
+PKG_INSTALL:=1
+
 GO_PKG:=go.opentelmetry.io/collector
 GO_PKG_BUILD_PKG:=go.opentelemetry.io/collector/cmd/builder
 
@@ -29,6 +31,10 @@ define Package/opentelemetry-collector
     TITLE:=OpenTelemetry Collector
     URL:=https://github.com/open-telemetry/opentelemetry-collector
     DEPENDS:=$(GO_ARCH_DEPENDS)
+endef
+
+define Package/opentelemetry-collector/description
+The OpenTelemetry Collector offers a vendor-agnostic implementation on how to receive, process and export telemetry data. In addition, it removes the need to run, operate and maintain multiple agents/collectors in order to support open-source telemetry data formats (e.g. Jaeger, Prometheus, etc.) to multiple open-source or commercial back-ends.
 endef
 
 define Host/Compile
@@ -60,7 +66,7 @@ define Package/opentelemetry-collector/install
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/etc/init.d $(1)/etc/config
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/otelcol $(1)/usr/bin/otelcol
 	$(INSTALL_BIN) ./files/otelcol.init $(1)/etc/init.d/otelcol
-	$(INSTALL_CONF) ./files/otelcol.yaml $(1)/etc/config/otelcol.yaml
+	$(INSTALL_CONF) ./files/otelcol.yaml $(1)/etc/config/otelcol
 endef
 
 $(eval $(call HostBuild))
