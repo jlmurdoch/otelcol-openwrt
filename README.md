@@ -4,7 +4,7 @@
 This is an OpenWRT package definition that allows the OpenTelemetry Collector to be cross-compiled on a suitable host for a target OpenWRT base system. The binary is small and statically-linked, with startup scripts and a basic configuration file. 
 
 ### Default Build Detail
-It is very minimal build. The `builder.yaml` can be modified to add more components. It has been tested on both ARM64 and Intel x86 32-bit hosts to compile for an ARM64 target. The build uses musl libc, which is in line with current OpenWRT build processes and keeps static binaries very small in size. The typical binary size is 25MB.
+It is minimal build. The `builder.yaml` can be modified to add more components. It has been tested on both ARM64 and Intel x86 32-bit hosts to compile for an ARM64 target. The build uses musl libc, which is in line with current OpenWRT build processes and keeps static binaries very small in size. The typical binary size is approx 65MB.
 
 Note: this package performs a two-pass compilation, by compiling:
 1) OpenTelemetry Collector Builder (`builder`) for the ***host***

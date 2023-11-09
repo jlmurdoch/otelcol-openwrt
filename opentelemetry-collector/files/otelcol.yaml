@@ -12,6 +12,10 @@ receivers:
 
 processors:
   batch:
+  resourcedetection:
+    detectors: [env, system]
+    timeout: 2s
+    override: false
 
 exporters:
   otlphttp:
@@ -30,5 +34,5 @@ service:
   pipelines:
     metrics:
       receivers: [otlp, hostmetrics]
-      processors: [batch]
+      processors: [resourcedetection]
       exporters: [otlphttp]

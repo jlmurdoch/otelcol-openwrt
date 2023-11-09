@@ -19,3 +19,4 @@ extensions:
 processors:
   - gomod: go.opentelemetry.io/collector/processor/batchprocessor vPKG_VERSION
   - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor vPKG_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processors/resourcedetectionprocessor vPKG_VERSION
