@@ -13,8 +13,6 @@ PKG_BUILD_DEPENDS:=opentelemetry-collector/host golang/host
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
-PKG_INSTALL:=1
-
 GO_PKG:=go.opentelmetry.io/collector
 GO_PKG_BUILD_PKG:=go.opentelemetry.io/collector/cmd/builder
 
